@@ -1,6 +1,5 @@
 const modelTransaction = require('../models/transaction')
 const helper = require('../helpers/helpers')
-// const { pagination } = require('../helpers/pagination')
 
 const transaction = {
   getDataTransaction: (req, res) => {

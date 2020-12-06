@@ -4,6 +4,9 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { v4: uuidv4 } = require('uuid')
 const { sendEmail } = require('../helpers/email')
+const { pagination } = require('../helpers/pagination')
+const redis = require("redis");
+const client = redis.createClient(6379);
 
 const users = {
   registerUser: (req, res) => {
@@ -62,19 +65,26 @@ const users = {
         return helper.responseError(res, null, 500, { message: 'Error send email' })
       })
   },
-  getDataUsers: (req, res) => {
+  getDataUsers: async (req, res) => {
     const username = req.query.username
     const email = req.query.email
-    modelUsers.getDataUsers(username, email)
+    const sortData = req.query.sort || 'id'
+    const typeSort = req.query.type || 'ASC'
+    const page = parseInt(req.query.page) || 1
+    const limit = parseInt(req.query.limit) || 3
+    const offset = (page - 1) * limit
+    const setPagination = await pagination(limit, page)
+    modelUsers.getDataUsers(username, email, offset, limit)
       .then(result => {
         const resultUser = result
         const error = {
           message: 'Error not found'
         }
+        client.setex("allUsers", 60*60, JSON.stringify(resultUser));
         if (resultUser.length === 0) {
           return helper.responseError(res, null, 404, error)
         }
-        helper.responseOk(res, resultUser, 200, null)
+        helper.responseOk(res, { pagination: setPagination, users: resultUser }, 200, null)
       })
       .catch(() => {
         return helper.responseError(res, null, 500, { message: 'Internal server error' })

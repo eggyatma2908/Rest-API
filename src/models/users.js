@@ -5,14 +5,18 @@ const users = {
   checkUser: (email) => {
     return actionQuery('SELECT * FROM users WHERE email = ?', email)
   },
+  // Pagination
+  countUsers: () => {
+    return actionQuery('SELECT COUNT(*) AS totalData FROM users')
+  },
   // Menampilkan semua data user
-  getDataUsers: (username, email) => {
+  getDataUsers: (username, email, offset, limit) => {
     if (username) {
       return actionQuery('SELECT * FROM users WHERE username LIKE ?', `%${username}%`)
     } else if (email) {
       return actionQuery('SELECT * FROM users WHERE email LIKE ?', `%${email}%`)
     } else {
-      return actionQuery('SELECT * FROM users')
+      return actionQuery(`SELECT * FROM users LIMIT ${limit} OFFSET ${offset}`)
     }
   },
   // Menampilkan data user berdasarkan id
