@@ -6,13 +6,12 @@ const PORT = process.env.PORT
 const cors = require('cors')
 const routerUsers = require('./src/routers/users')
 const routerTransaction = require('./src/routers/transaction')
-const routerStatus = require('./src/routers/status')
 const bodyParser = require('body-parser')
 const helper = require('./src/helpers/helpers')
 
 // membuat middleware
 const mymiddleware = (req, res, next) => {
-  console.log('menjalankan my middleware')
+  console.log('My middleware is running')
   // res.send('mymiddleware')
   next()
 }
@@ -32,11 +31,13 @@ app.use(morgan('dev'))
 // add mymiddleware
 app.use(mymiddleware)
 
+app.use('/upload', express.static('./upload'))
+
 // menggunakan router
 app.use('/users', routerUsers)
 app.use('/transaction', routerTransaction)
-app.use('/status', routerStatus)
 
+// error handling
 app.use('*', (req, res) => {
   const error = {
     message: 'URL not found'

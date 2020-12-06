@@ -1,82 +1,35 @@
-const connection = require('../configs/db')
+const { actionQuery } = require('../helpers/helpers')
+
 const users = {
+  // Cek user berdasarkan email
+  checkUser: (email) => {
+    return actionQuery('SELECT * FROM users WHERE email = ?', email)
+  },
   // Menampilkan semua data user
-  getDataUsers: (name, phoneNumber, limit, offset) => {
-    return new Promise((resolve, reject) => {
-      if (name) {
-        connection.query('SELECT * FROM users WHERE name LIKE ?', `%${name}%`, (error, results) => {
-          if (!error) {
-            resolve(results)
-          } else {
-            reject(error)
-          }
-        })
-      } else if (phoneNumber) {
-        connection.query('SELECT * FROM users WHERE phoneNumber LIKE ?', `%${phoneNumber}%`, (error, results) => {
-          if (!error) {
-            resolve(results)
-          } else {
-            reject(error)
-          }
-        })
-      } else {
-        connection.query(`SELECT * FROM users LIMIT ${limit} OFFSET ${offset}`, (error, results) => {
-          if (!error) {
-            resolve(results)
-          } else {
-            reject(error)
-          }
-        })
-      }
-    })
+  getDataUsers: (username, email) => {
+    if (username) {
+      return actionQuery('SELECT * FROM users WHERE username LIKE ?', `%${username}%`)
+    } else if (email) {
+      return actionQuery('SELECT * FROM users WHERE email LIKE ?', `%${email}%`)
+    } else {
+      return actionQuery('SELECT * FROM users')
+    }
   },
   // Menampilkan data user berdasarkan id
   getDataUserById: (id) => {
-    return new Promise((resolve, reject) => {
-      connection.query('SELECT * FROM users WHERE id = ?', id, (error, results) => {
-        if (!error) {
-          resolve(results)
-        } else {
-          reject(error)
-        }
-      })
-    })
+    return actionQuery('SELECT * FROM users WHERE id = ?', id)
   },
   // Menambahkan data user
   insertDataUser: (data) => {
-    return new Promise((resolve, reject) => {
-      connection.query('INSERT INTO users SET ?', data, (error, results) => {
-        if (!error) {
-          resolve(results)
-        } else {
-          reject(error)
-        }
-      })
-    })
+    return actionQuery('INSERT INTO users SET ?', data)
   },
   // Mengubah data user berdasarkan id
-  updateDataUserById: (id, data) => {
-    return new Promise((resolve, reject) => {
-      connection.query('UPDATE users SET ? WHERE id = ?', [data, id], (error, results) => {
-        if (!error) {
-          resolve(results)
-        } else {
-          reject(error)
-        }
-      })
-    })
+  updateDataUser: (id, data) => {
+    return actionQuery('UPDATE users SET ? WHERE id = ?', [data, id])
   },
   // Menghapus data user berdasarkan id
   deleteDataUserById: (id) => {
-    return new Promise((resolve, reject) => {
-      connection.query('DELETE FROM users WHERE id = ?', id, (error, results) => {
-        if (!error) {
-          resolve(results)
-        } else {
-          reject(error)
-        }
-      })
-    })
+    return actionQuery('DELETE FROM users WHERE id = ?', id)
   }
 }
 
