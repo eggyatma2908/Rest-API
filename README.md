@@ -1,8 +1,6 @@
-# Rest-API
+# Zwallet-Backend
 
-Tugas Week 4 Zwallet-API
-
-REST API ini dibangun menggunakan Node JS dan menggunakan MVC Arsitektur.
+Dibangun menggunakan Node JS dan menggunakan MVC Arsitektur.
 
 MVC Arsitektur :
 
