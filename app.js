@@ -6,6 +6,7 @@ const PORT = process.env.PORT
 const cors = require('cors')
 const routerUsers = require('./src/routers/users')
 const routerTransaction = require('./src/routers/transaction')
+const emailRoute = require('./src/routers/email')
 const bodyParser = require('body-parser')
 const helper = require('./src/helpers/helpers')
 
@@ -31,11 +32,12 @@ app.use(morgan('dev'))
 // add mymiddleware
 app.use(mymiddleware)
 
-app.use('/upload', express.static('./upload'))
-
 // menggunakan router
 app.use('/users', routerUsers)
 app.use('/transaction', routerTransaction)
+app.use('/emailVerification', emailRoute)
+
+app.use('/upload', express.static('./uploads'))
 
 // error handling
 app.use('*', (req, res) => {

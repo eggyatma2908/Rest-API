@@ -2,18 +2,22 @@ const jwt = require('jsonwebtoken')
 const helper = require('../helpers/helpers')
 
 exports.verifyAccess = (req, res, next) => {
-  const authorization = req.headers.authorization
-  if (!authorization) {
+  const authHeader = req.headers['authorization']
+  const accessToken = authHeader && authHeader.split(' ')[1]
+  
+  if (!accessToken) {
     return helper.responseError(res, null, 401, {
       message: 'Server, need token'
     })
   }
 
-  let token = authorization.split(' ')
-  token = token[1]
-
-  jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
+  jwt.verify(accessToken, process.env.ACCESS_TOKEN_KEY, function (err, results) {
+    if(!err){
+      req.user = results
+      return next()
+    }
     if (err) {
+      console.log(err)
       if (err.name === 'JsonWebTokenError') {
         return helper.responseError(res, null, 401, {
           message: 'Invalid token'
@@ -24,8 +28,8 @@ exports.verifyAccess = (req, res, next) => {
         })
       }
     }
-    req.userID = decoded.userID
-    req.roleID = decoded.roleID
-    next()
+    // req.userID = decoded.userID
+    // req.roleID = decoded.roleID
+    // next()
   })
 }
