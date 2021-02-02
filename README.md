@@ -46,5 +46,4 @@ You can view my postman collection <br> <br>
 https://github.com/eggyatma2908/Zwallet-Front-End
 
 # Contact
-Email : eggyatmariansyah@gmail.com,
-LinkedIn : https://www.linkedin.com/in/eggyatmariansyah/
+Email : eggyatmariansyah@gmail.com, LinkedIn : https://www.linkedin.com/in/eggyatmariansyah/
