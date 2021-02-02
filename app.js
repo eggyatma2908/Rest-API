@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 4000
 const cors = require('cors')
 const routerUsers = require('./src/routers/users')
 const routerTransaction = require('./src/routers/transaction')
