@@ -14,6 +14,6 @@ router
   .post('/:id', verifyAccess, editPhone)
   .patch('/balancesender/:id', verifyAccess, updateBalanceSender)
   .patch('/balancereceiver/:id', verifyAccess, updateBalanceReceiver)
-  .patch('/profile/:id', verifyAccess, updateImage)
+  .patch('/profile/:id', updateImage)
   .delete('/:id', verifyAccess, deleteDataUserById)
 module.exports = router
