@@ -47,4 +47,4 @@ app.use('*', (req, res) => {
   helper.responseError(res, null, 404, error)
 })
 
-app.listen(PORT, () => console.log(`server is running port ${PORT}`))
+app.listen(PORT || 4000, () => console.log(`server is running port ${PORT}`))
