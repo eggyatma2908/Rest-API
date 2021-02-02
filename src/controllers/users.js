@@ -66,9 +66,9 @@ const users = {
           })
         })
       })
-    // .catch(() => {
-    //   return helper.responseError(res, null, 500, { message: 'Internal server error' })
-    // })
+    .catch(() => {
+      return helper.responseError(res, null, 500, { message: 'Internal server error' })
+    })
   },
   emailVerification: (req, res, next) => {
     const email = req.body.email
