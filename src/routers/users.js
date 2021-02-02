@@ -6,7 +6,7 @@ const { verifyAccess } = require('../middlewares/auth')
 // const { cacheAllUsers} = require('../middlewares/redis')
 
 router
-  .get('/', verifyAccess, getDataUsers)
+  .get('/', getDataUsers)
   .get('/:id', verifyAccess, getDataUserById)
   .post('/', verifyAccess, insertDataUser)
   .post('/register', emailVerification, registerUser)
