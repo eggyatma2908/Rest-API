@@ -37,6 +37,9 @@ const users = {
           })
         })
       })
+      .catch (() => {
+        return helper.responseError(res, null, 500, { message: 'Internal server error' })
+      })
   },
   loginUser: (req, res, next) => {
     const { email, password } = req.body
