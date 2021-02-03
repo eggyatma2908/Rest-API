@@ -21,6 +21,7 @@ const users = {
 
     modelUsers.checkUser(email)
       .then((result) => {
+        console.log(result)
         if (result.length > 0) return helper.responseError(res, null, 401, { message: 'Email already exist' })
         bcrypt.genSalt(10, function (err, salt) {
           bcrypt.hash(password, salt, function (err, hash) {
@@ -37,7 +38,8 @@ const users = {
           })
         })
       })
-      .catch (() => {
+      .catch ((err) => {
+        console.log(err)
         return helper.responseError(res, null, 500, { message: 'Internal server error' })
       })
   },
