@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { getDataUsers, getDataUserById, insertDataUser, emailVerification, registerUser, loginUser, editPhone, updateBalanceSender, updateBalanceReceiver, updateImage, deleteDataUserById } = require('../controllers/users')
-const { uploadMulter } = require('../middlewares/upload')
 const { verifyAccess } = require('../middlewares/auth')
 // const { cacheAllUsers} = require('../middlewares/redis')
 

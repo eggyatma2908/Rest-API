@@ -3,9 +3,8 @@ const helper = require('../helpers/helpers')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { v4: uuidv4 } = require('uuid')
-const { emailVerification } = require('../helpers/emailVerification')
+const emailVerification = require('../helpers/emailVerification')
 const { pagination } = require('../helpers/pagination')
-const sendEmail = require('../helpers/emailVerification')
 const { uploadMulter } = require('../middlewares/upload')
 const uploadSingleImage = uploadMulter.single('photoProfile')
 // const redis = require("redis");
@@ -76,7 +75,7 @@ const users = {
       helper.responseError(res, null, 404, { message: 'Forbidden: message and email cannot be empty' })
     }
     try {
-      sendEmail(email)
+      emailVerification(email)
       return next()
     } catch (error) {
       helper.responseError(res, null, 500, { message: 'Looks like server having trouble..' })
