@@ -123,10 +123,10 @@ var nodemailer = require('nodemailer')
   
       transporter.sendMail(message, (error, info) => {
         if (!error) {
-          console.log(infor)
+          console.log(info)
           resolve(info)
         }else{
-          console.log(error)
+          console.log(error, 'tes')
           reject(error)
         }
       })
