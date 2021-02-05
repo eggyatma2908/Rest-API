@@ -5,7 +5,6 @@ class Model {
 
   }
   checkEmailStatus(email){
-    console.log(email)
     return new Promise((resolve,reject)=>{
       connection.query('SELECT emailVerification FROM users WHERE email = ?',email,(error,results)=>{
         if(!error){
