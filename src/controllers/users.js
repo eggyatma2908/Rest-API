@@ -47,14 +47,14 @@ const users = {
       .then((result) => {
         const user = result[0]
         if (result.length === 0) {
-          helper.responseError(res, null, 402, { error: 'Email has not been registered' })
+          return helper.responseError(res, null, 402, { error: 'Email has not been registered' })
         }
         if (user.emailVerification === null) {
-          helper.responseError(res, null, 401, { error: 'Email has not been verified' })
+          return helper.responseError(res, null, 401, { error: 'Email has not been verified' })
         }
 
         bcrypt.compare(password, user.password, function (err, resCheck) {
-          if (resCheck === false) helper.responseError(res, null, 401, { error: 'Password Wrong' })
+          if (resCheck === false) return helper.responseError(res, null, 401, { error: 'Password Wrong' })
           delete user.password
 
           //accessToken
