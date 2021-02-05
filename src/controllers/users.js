@@ -46,6 +46,7 @@ const users = {
     modelUsers.checkUser(email)
       .then((result) => {
         const user = result[0]
+        console.log(user)
         if (result.length === 0) {
           return helper.responseError(res, null, 401, { error: 'Email has not been registered' })
         }
