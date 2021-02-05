@@ -48,7 +48,7 @@ const users = {
         const user = result[0]
         console.log(result.length)
         if (result.length === 0) {
-          return helper.responseError(res, null, 401, { error: 'Email has not been registered' })
+          return helper.responseError(res, null, 402, { error: 'Email has not been registered' })
         }
         if (user.emailVerification === null) {
           return helper.responseError(res, null, 401, { error: 'Email has not been verified' })
