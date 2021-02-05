@@ -49,6 +49,7 @@ class Controller {
     const email = req.headers.email
     emailModel.checkEmailStatus(email)
       .then(results => {
+        console.log(results)
         if (results.length === 0) {
           helper.responseError(res, null, 404, { message: 'Forbidden: You are not user' })
         }
