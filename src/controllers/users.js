@@ -28,7 +28,8 @@ const users = {
               id,
               username,
               email,
-              password: hash
+              password: hash,
+              balance: 100000
             }
             modelUsers.insertDataUser(data)
               .then(() => {
