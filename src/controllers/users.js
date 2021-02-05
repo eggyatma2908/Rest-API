@@ -164,6 +164,7 @@ const users = {
     }
     modelUsers.updateBalanceSender(id, data)
       .then(result => {
+        console.log(result)
         helper.responseOk(res, result, 200, null)
       })
       .catch((err) => {
@@ -178,6 +179,7 @@ const users = {
     }
     modelUsers.updateBalanceReceiver(id, data)
       .then(result => {
+        console.log(result)
         helper.responseOk(res, result, 200, null)
       })
       .catch((err) => {

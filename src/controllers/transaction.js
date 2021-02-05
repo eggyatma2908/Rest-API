@@ -45,6 +45,7 @@ const transaction = {
     }
     modelTransaction.insertDataTransaction(data)
       .then(result => {
+        console.log(result)
         helper.responseOk(res, result, 200, null)
       })
       .catch(() => {
