@@ -28,7 +28,6 @@ class Controller {
     emailModel.checkEmailStatus(email)
       .then(results => {
         const emailVerification = results[0].emailVerification
-        console.log(emailVerification)
         if (emailVerification === 1) {
             helper.responseError(res, null, 404, { message: 'Forbidden' })
         } else if (emailVerification === null) {
@@ -50,7 +49,6 @@ class Controller {
     const email = req.headers.email
     emailModel.checkEmailStatus(email)
       .then(results => {
-        console.log(results)
         if (results.length === 0) {
           helper.responseError(res, null, 404, { message: 'Forbidden: You are not user' })
         }

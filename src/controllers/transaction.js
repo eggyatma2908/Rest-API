@@ -18,6 +18,7 @@ const transaction = {
         return helper.responseError(res, null, 500, { message: 'Internal server error' })
       })
   },
+  // (unused)
   getDataTransactionById: (req, res) => {
     const id = req.params.id
     modelTransaction.getDataTransactionById(id)
@@ -45,14 +46,13 @@ const transaction = {
     }
     modelTransaction.insertDataTransaction(data)
       .then(result => {
-        console.log(result, 'Transfer Success')
         return helper.responseOk(res, result, 200, null)
       })
       .catch((err) => {
-        console.log(err, 'Transfer Failed')
         return helper.responseError(res, null, 500, { message: 'Internal server error' })
       })
   },
+  // (unused)
   updateDataTransactionById: (req, res) => {
     const { amount, notes } = req.body
     const id = req.params.id
@@ -68,6 +68,7 @@ const transaction = {
         return helper.responseError(res, null, 500, { message: 'Internal server error' })
       })
   },
+  // (unused)
   deleteDataTransactionById: (req, res) => {
     const id = req.params.id
     modelTransaction.deleteDataTransactionById(id)

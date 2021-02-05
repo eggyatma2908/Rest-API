@@ -21,11 +21,11 @@ const transaction = {
   insertDataTransaction: (data) => {
     return actionQuery ('INSERT INTO transaction SET ?', data)
   },
-  // Mengubah data transaksi berdasarkan id
+  // Mengubah data transaksi berdasarkan id (unused)
   updateDataTransactionById: (id, data) => {
     return actionQuery ('UPDATE transaction SET ? WHERE id = ?', [data, id])
   },
-  // Menghapus data user berdasarkan id
+  // Menghapus data user berdasarkan id (unused)
   deleteDataTransactionById: (id) => {
     return actionQuery ('DELETE FROM transaction WHERE id = ?', id)
   }

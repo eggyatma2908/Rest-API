@@ -17,7 +17,6 @@ exports.verifyAccess = (req, res, next) => {
       return next()
     }
     if (err) {
-      console.log(err)
       if (err.name === 'JsonWebTokenError') {
         return helper.responseError(res, null, 401, {
           message: 'Invalid token'
@@ -28,8 +27,5 @@ exports.verifyAccess = (req, res, next) => {
         })
       }
     }
-    // req.userID = decoded.userID
-    // req.roleID = decoded.roleID
-    // next()
   })
 }

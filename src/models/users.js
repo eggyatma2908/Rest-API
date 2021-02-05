@@ -43,7 +43,7 @@ const users = {
   updateImage: (id, data) => {
     return actionQuery('UPDATE users SET ? WHERE id = ?', [data, id])
   },
-  // Menghapus data user berdasarkan id
+  // Menghapus data user berdasarkan id (unused)
   deleteDataUserById: (id) => {
     return actionQuery('DELETE FROM users WHERE id = ?', id)
   }
