@@ -164,8 +164,8 @@ const users = {
     }
     modelUsers.updateBalanceSender(id, data)
       .then(result => {
-        console.log(result)
-        helper.responseOk(res, result, 200, null)
+        console.log(result, 'update saldo pengirim berhasil')
+        return helper.responseOk(res, result, 200, null)
       })
       .catch((err) => {
         return helper.responseError(res, null, 500, { message: 'Internal server error' })
@@ -179,8 +179,8 @@ const users = {
     }
     modelUsers.updateBalanceReceiver(id, data)
       .then(result => {
-        console.log(result)
-        helper.responseOk(res, result, 200, null)
+        console.log(result, 'update saldo penerima berhasil')
+        return helper.responseOk(res, result, 200, null)
       })
       .catch((err) => {
         return helper.responseError(res, null, 500, { message: 'Internal server error' })

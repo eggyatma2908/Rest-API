@@ -45,10 +45,11 @@ const transaction = {
     }
     modelTransaction.insertDataTransaction(data)
       .then(result => {
-        console.log(result)
+        console.log(result, 'Transfer Success')
         return helper.responseOk(res, result, 200, null)
       })
-      .catch(() => {
+      .catch((err) => {
+        console.log(err, 'Transfer Failed')
         return helper.responseError(res, null, 500, { message: 'Internal server error' })
       })
   },
