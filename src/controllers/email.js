@@ -31,7 +31,7 @@ class Controller {
         console.log(emailVerification)
         if (emailVerification === 1) {
             helper.responseError(res, null, 404, { message: 'Forbidden' })
-        } else if (emailVerification === 0) {
+        } else if (emailVerification === null) {
           emailModel.emailVerification(email)
             .then(() => {
               helper.responseOk(res, { message: 'Your email was successfully verified' }, 200, null)
