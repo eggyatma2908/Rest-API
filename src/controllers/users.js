@@ -46,16 +46,15 @@ const users = {
     modelUsers.checkUser(email)
       .then((result) => {
         const user = result[0]
-        console.log(result.length)
         if (result.length === 0) {
-          return helper.responseError(res, null, 402, { error: 'Email has not been registered' })
+          helper.responseError(res, null, 402, { error: 'Email has not been registered' })
         }
         if (user.emailVerification === null) {
-          return helper.responseError(res, null, 401, { error: 'Email has not been verified' })
+          helper.responseError(res, null, 401, { error: 'Email has not been verified' })
         }
 
         bcrypt.compare(password, user.password, function (err, resCheck) {
-          if (resCheck === false) return helper.responseError(res, null, 401, { error: 'Password Wrong' })
+          if (resCheck === false) helper.responseError(res, null, 401, { error: 'Password Wrong' })
           delete user.password
 
           //accessToken
