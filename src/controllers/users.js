@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require('uuid')
 const { pagination } = require('../helpers/pagination')
 const { uploadMulter } = require('../middlewares/upload')
 const sendEmail = require('../helpers/emailVerification')
+const { insertPinUser } = require('../models/users')
 const uploadSingleImage = uploadMulter.single('photoProfile')
 // const redis = require("redis");
 // const client = redis.createClient(6379);
@@ -33,7 +34,7 @@ const users = {
             }
             modelUsers.insertDataUser(data)
               .then(() => {
-                return helper.responseOk(res, { message: 'Register succesfuly' }, 200, null)
+                return helper.responseOk(res, { ...data, message: 'Register succesfuly' }, 200, null)
               })
           })
         })
@@ -218,7 +219,22 @@ const users = {
       .catch((err) => {
         return helper.responseError(res, null, 500, { message: 'Internal server error' })
       })
-  }
+  },
+  editPin: (req, res) => {
+    const id = req.params.id
+    const { pin } = req.body
+    const data = {
+      pin
+    }
+    modelUsers.editPin(id, data)
+      .then(result => {
+        return helper.responseOk(res, {result, data}, 200, null)
+      })
+      .catch((err) => {
+        console.log(err)
+        return helper.responseError(res, null, 500, { message: 'Internal server error' })
+      })
+  },
 }
 
 module.exports = users

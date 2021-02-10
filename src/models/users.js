@@ -27,6 +27,10 @@ const users = {
   insertDataUser: (data) => {
     return actionQuery('INSERT INTO users SET ?', data)
   },
+  // Menambahkan, mengubah dan menghapus pin berdasarkan id
+  editPin: (id, data) => {
+    return actionQuery('UPDATE users SET ? WHERE id = ?', [data, id])
+  },
   // Menambahkan, mengubah dan menghapus nomor telepon berdasarkan id
   editPhone: (id, data) => {
     return actionQuery('UPDATE users SET ? WHERE id = ?', [data, id])
